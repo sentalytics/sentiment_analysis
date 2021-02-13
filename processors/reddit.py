@@ -1,7 +1,7 @@
-from db.models import post as postModel
 import requests
 
-from helpers.exceptions import handle_error
+from db.models import post as postModel
+from helpers import exceptions
 
 baseURL = "https://www.reddit.com/r/"
 headers = {'User-Agent': 'Mozilla/5.0'}
@@ -15,10 +15,9 @@ def get_posts(sub, symbol, classifier, sort="new"):
         if resp.status_code == 200:
             return __process_posts(resp.json(), classifier)
         else:
-            handle_error("Failed to get reddit posts.", str(resp.status_code))
-            return []
+            exceptions.handle_error("Failed to get reddit posts.", str(resp.status_code))
     except Exception as e:
-        handle_error("Failed to get reddit posts.", e)
+        exceptions.handle_error("Failed to get reddit posts.", e)
 
 
 def __process_posts(rawPosts, classifier):
