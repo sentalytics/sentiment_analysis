@@ -1,7 +1,7 @@
 from helpers import exceptions
 from pymongo import MongoClient
 
-cluster = MongoClient("mongodb+srv://root:MMp407mLrVaYlQFA@cluster0.mmscg.mongodb.net/sentiment?retryWrites=true&w=majority")
+cluster = MongoClient("mongodb+srv://root:<PASSWORD>@cluster0.mmscg.mongodb.net/sentiment?retryWrites=true&w=majority")
 db = cluster["sentiment"]
 collection = db["posts"]
 
